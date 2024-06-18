@@ -11,6 +11,10 @@ ARG TARGETPLATFORM
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+
+RUN apt-get update && apt-get install -y wget curl jq && \
+    curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+
 WORKDIR /actions-runner
 COPY install_actions.sh /actions-runner
 
