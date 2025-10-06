@@ -1,5 +1,5 @@
 # hadolint ignore=DL3007
-FROM myoung34/github-runner-base:latest
+FROM myoung34/github-runner-base:ubuntu-noble
 LABEL maintainer="myoung34@my.apsu.edu"
 
 ENV AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
@@ -17,6 +17,12 @@ RUN apt-get update && apt-get install -y wget curl jq && \
 
 RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq && \
     chmod +x /usr/bin/yq
+
+# Install Node.js and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g npm@latest
+
 
 WORKDIR /actions-runner
 COPY install_actions.sh /actions-runner
