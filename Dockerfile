@@ -21,7 +21,8 @@ RUN wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
 # Install Node.js and npm
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
     apt-get install -y nodejs && \
-    npm install -g npm@latest
+    npm install -g npm@latest && \
+    npm install -g @angular/cli
 
 
 WORKDIR /actions-runner
